@@ -29,10 +29,41 @@ public class Main {
                 .openOrCreate();
 
         NitriteCollection c = db1.getCollection("Employees");
+        Scanner scan = new Scanner(System.in);
 
-        createDoc(c, 1, "rose diaz", 100000);
-        createDoc(c, 2, "Mateo Lopez", 50000);
-        createDoc(c, 3, "John Smith", 75000);
+        int choice;
+        System.out.println("please enter a choice: 1 for adding, 2 for deleting, and 3 for displaying");
+        choice = scan.nextInt();
+
+        if (choice == 1) {
+
+            int id;
+            String name;
+            int salary;
+
+            System.out.println("Please enter the ID");
+            id = scan.nextInt();
+
+            System.out.println("Please enter the name");
+            name = scan.next();
+
+            System.out.println("Please enter the salary");
+            salary = scan.nextInt();
+
+            createDoc(c, id, name, salary);
+        }
+        else if(choice == 2){
+            System.out.println("please enter an id");
+            int id = scan.nextInt();
+            
+            deleteEmp(c,id);
+        }
+        else if(choice == 3){
+            displayEmp(c);
+        }
+        else{
+            System.out.println("error wrong choice");
+        }
 
         /**
          * ****************************
